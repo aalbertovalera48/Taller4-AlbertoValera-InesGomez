@@ -1,44 +1,67 @@
-# Proyecto Taller 4 Alberto Valera y Inés Gómez
+# Proyecto Taller 4
+### Hecho por: Alberto Valera e Ines Gomez
 
-Este proyecto es una aplicación de Android desarrollada en Kotlin que simula el movimiento de un sensor de acelerómetro y actualiza el color de fondo de la aplicación en función de los valores del sensor. La aplicación también permite agregar y mostrar productos.
+Este proyecto es una aplicación de Android desarrollada en Kotlin que permite agregar y mostrar productos. La aplicación utiliza `ViewModel` y `LiveData` para gestionar los datos y `RecyclerView` para mostrar listas de elementos.
 
 ## Clases
 
 ### `MainActivity.kt`
-La clase `MainActivity` es la actividad principal de la aplicación. Configura el `Toolbar` y el `NavHostFragment` para la navegación entre fragmentos. Observa el `SharedViewModel` para actualizar el color de fondo del `Toolbar`.
+La clase `MainActivity` es la actividad principal de la aplicación. Configura el `Toolbar` y el `NavHostFragment` para la navegación entre fragmentos.
 
-### `SharedViewModel.kt`
-La clase `SharedViewModel` es un `ViewModel` compartido que mantiene el color de fondo de la aplicación. Proporciona un `LiveData` para observar el color de fondo y un método para actualizarlo.
+- **onCreate**: Configura el `Toolbar` y el `NavHostFragment` para la navegación.
+- **onSupportNavigateUp**: Maneja la navegación hacia arriba.
 
-### `ItemListFragment.kt`
-El `ItemListFragment` muestra una lista de elementos y simula el movimiento del sensor de acelerómetro. Actualiza el color de fondo de la aplicación cuando los valores del sensor cambian significativamente. También muestra la hora actual y un saludo basado en la hora del día.
+### `Producto.kt`
+La clase `Producto` es un modelo de datos que representa un producto con un número de serie, nombre, precio y cantidad.
 
-### `DataSummaryFragment.kt`
-El `DataSummaryFragment` muestra un resumen de los productos en un `RecyclerView`. Observa el `ProductViewModel` para actualizar la lista de productos y el `SharedViewModel` para actualizar el color de fondo.
+### `ProductoViewModel.kt`
+El `ProductoViewModel` es un `ViewModel` que mantiene una lista de productos.
 
-### `AddProductFragment.kt`
-El `AddProductFragment` permite agregar nuevos productos. Obtiene los datos de los campos de texto y los agrega al `ProductViewModel`. Observa el `SharedViewModel` para actualizar el color de fondo.
+- **addProduct**: Agrega un producto a la lista y actualiza el `LiveData`.
 
-### `ItemDetailFragment.kt`
-El `ItemDetailFragment` muestra los detalles de un elemento seleccionado. Observa el `SharedViewModel` para actualizar el color de fondo.
+### `AñadirProductoFragment.kt`
+El `AñadirProductoFragment` permite agregar nuevos productos.
 
-### `ProductViewModel.kt`
-El `ProductViewModel` es un `ViewModel` que mantiene una lista de productos. Proporciona métodos para agregar productos y observar la lista de productos.
+- **onCreateView**: Infla el diseño del fragmento.
+- **onViewCreated**: Configura el botón de guardar para agregar un producto.
+- **onDestroyView**: Limpia el binding.
 
-### `Product.kt`
-La clase `Product` es un modelo de datos que representa un producto con un número de serie, nombre, precio y cantidad.
+### `DetallesElementoFragment.kt`
+El `DetallesElementoFragment` muestra los detalles de un elemento seleccionado.
 
-### `ProductAdapter.kt`
-El `ProductAdapter` es un adaptador para el `RecyclerView` en `DataSummaryFragment`. Vincula los datos de los productos a las vistas del `RecyclerView`.
+- **onCreateView**: Infla el diseño del fragmento.
+- **onViewCreated**: Muestra los detalles del elemento seleccionado.
+- **onDestroyView**: Limpia el binding.
 
-### `ItemAdapter.kt`
-El `ItemAdapter` es un adaptador para el `RecyclerView` en `ItemListFragment`. Vincula los datos de los elementos a las vistas del `RecyclerView`.
+### `ElementoAdapter.kt`
+El `ElementoAdapter` es un adaptador para el `RecyclerView` en `ListaElementoFragment`.
 
-### `AccelerometerHandler.kt`
-El `AccelerometerHandler` maneja los eventos del sensor de acelerómetro. Proporciona métodos para comenzar y detener la escucha de los eventos del sensor.
+- **onCreateViewHolder**: Infla el diseño de un elemento de la lista.
+- **onBindViewHolder**: Vincula los datos del elemento a las vistas.
+- **getItemCount**: Devuelve el número de elementos en la lista.
 
-### `CustomReloj.kt`
-El `CustomReloj` es una vista personalizada que dibuja un reloj analógico. Actualiza la hora cada segundo.
+### `ListaElementoFragment.kt`
+El `ListaElementoFragment` muestra una lista de elementos y actualiza la hora y el saludo.
+
+- **onCreateView**: Infla el diseño del fragmento.
+- **onViewCreated**: Configura el reloj, el saludo y el botón de navegación.
+- **updateClock**: Actualiza la hora cada segundo.
+- **updateGreeting**: Actualiza el saludo basado en la hora del día.
+- **onDestroyView**: Limpia el binding.
+
+### `ProductoAdapter.kt`
+El `ProductoAdapter` es un adaptador para el `RecyclerView` en `ResumenDatosFragment`.
+
+- **onCreateViewHolder**: Infla el diseño de un elemento de la lista de productos.
+- **onBindViewHolder**: Vincula los datos del producto a las vistas.
+- **getItemCount**: Devuelve el número de productos en la lista.
+
+### `ResumenDatosFragment.kt`
+El `ResumenDatosFragment` muestra un resumen de los productos en un `RecyclerView`.
+
+- **onCreateView**: Infla el diseño del fragmento.
+- **onViewCreated**: Configura el `RecyclerView` y los botones de agregar y actualizar.
+- **onDestroyView**: Limpia el binding.
 
 ## Archivos XML
 
@@ -46,32 +69,24 @@ El `CustomReloj` es una vista personalizada que dibuja un reloj analógico. Actu
 Define el diseño principal de la actividad, incluyendo el `Toolbar` y el `NavHostFragment`.
 
 ### `fragment_item_list.xml`
-Define el diseño del `ItemListFragment`, incluyendo un reloj personalizado, textos para la hora y el saludo, y un botón de navegación.
+Define el diseño del `ListaElementoFragment`, incluyendo un reloj, textos para la hora y el saludo, y un botón de navegación.
 
 ### `fragment_data_summary.xml`
-Define el diseño del `DataSummaryFragment`, incluyendo un `RecyclerView` para mostrar los productos y botones para agregar y actualizar productos.
+Define el diseño del `ResumenDatosFragment`, incluyendo un `RecyclerView` para mostrar los productos y botones para agregar y actualizar productos.
 
 ### `fragment_add_product.xml`
-Define el diseño del `AddProductFragment`, incluyendo campos de texto para ingresar los detalles del producto y un botón para guardar.
+Define el diseño del `AñadirProductoFragment`, incluyendo campos de texto para ingresar los detalles del producto y un botón para guardar.
 
 ### `fragment_item_detail.xml`
-Define el diseño del `ItemDetailFragment`, incluyendo un texto para mostrar los detalles del elemento.
+Define el diseño del `DetallesElementoFragment`, incluyendo un texto para mostrar los detalles del elemento.
 
 ### `item_list_content.xml`
-Define el diseño de un elemento en la lista de `ItemListFragment`.
+Define el diseño de un elemento en la lista de `ListaElementoFragment`.
 
 ### `item_product.xml`
-Define el diseño de un elemento en la lista de productos de `DataSummaryFragment`.
+Define el diseño de un elemento en la lista de productos de `ResumenDatosFragment`.
 
 ### `nav_graph.xml`
 Define la navegación entre los fragmentos de la aplicación.
 
-## Permisos
-
-### `AndroidManifest.xml`
-Incluye el permiso `android.permission.BODY_SENSORS` para acceder a los sensores del dispositivo.
-link al repo ->https://github.com/cosmxr/Taller4.git
-
-## Conclusión
-
-Este proyecto demuestra cómo utilizar `ViewModel` y `LiveData` para compartir datos entre fragmentos, cómo manejar eventos de sensores y cómo personalizar vistas en Android. La aplicación es modular y fácil de mantener, con una clara separación de responsabilidades entre las diferentes clases y fragmentos.
+URL: 
