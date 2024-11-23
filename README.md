@@ -1,4 +1,4 @@
-# Proyecto Taller 4
+# Proyecto Taller 4 Alberto Valera y Inés Gómez
 
 Este proyecto es una aplicación de Android desarrollada en Kotlin que simula el movimiento de un sensor de acelerómetro y actualiza el color de fondo de la aplicación en función de los valores del sensor. La aplicación también permite agregar y mostrar productos.
 
