@@ -1,6 +1,8 @@
 # Proyecto Taller 4
 ### Hecho por: Alberto Valera e Ines Gomez
 
+URL: https://github.com/aalbertovalera48/Taller4-AlbertoValera-InesGomez.git
+
 Este proyecto es una aplicación de Android desarrollada en Kotlin que permite agregar y mostrar productos. La aplicación utiliza `ViewModel` y `LiveData` para gestionar los datos y `RecyclerView` para mostrar listas de elementos.
 
 ## Clases
@@ -89,4 +91,3 @@ Define el diseño de un elemento en la lista de productos de `ResumenDatosFragme
 ### `nav_graph.xml`
 Define la navegación entre los fragmentos de la aplicación.
 
-URL: 
